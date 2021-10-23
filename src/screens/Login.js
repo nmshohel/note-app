@@ -34,15 +34,14 @@ export default function Login({navigation}) {
             <View>
                     <Image 
                             style={{
-                                        width: 200,
-                                        height: 200,
-                                        marginTop:80,
+                                      
+                                        marginTop:40,
 
                                         resizeMode: 'contain',
                                         alignSelf:'center'
 
                                     }}
-                            source={require('../../assets/rsz_user-login.png')} />
+                            source={require('../../assets/login.png')} />
                     <Text style={{fontSize:18, fontWeight:'bold', textAlign:'center'}}>Never forget your notes</Text>
             </View>
             <View style={{margin:25}}>
