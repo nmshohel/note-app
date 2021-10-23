@@ -72,10 +72,11 @@ export default function Signup() {
                 }
             </View>
 
-            {
-                loding? 
+            { loding ?
+              
                 <ActivityIndicator/>
                 :
+               
                 <Button onPress={signup} title="Submit" customStyles={{marginTop:25, alignSelf:'center'}}/>
             }
 
