@@ -8,6 +8,9 @@ import Create from './src/screens/Create';
 import Update from './src/screens/Update';
 import Login from './src/screens/Login';
 import Signup from './src/screens/Signup';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['Setting a timer']);
 
 
 const AppTheme = {
