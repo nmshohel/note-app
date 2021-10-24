@@ -9,7 +9,8 @@ import Update from './src/screens/Update';
 import Login from './src/screens/Login';
 import Signup from './src/screens/Signup';
 import { LogBox } from 'react-native';
-import {firebase} from './config'
+import {firebase} from './config';
+import FlashMessage from "react-native-flash-message";
 
 // import {YellowBox} from 'react-native';
 
@@ -57,8 +58,13 @@ export default function App() {
       {
         user ?(
           <>
-              <Stack.Screen name="Home" component={Home} options={{headerShown:false}}  />
-              <Stack.Screen name="Create" component={Create}/>
+              <Stack.Screen name="Home"  options={{headerShown:false}} >
+                      {props=> <Home {...props} user={user}/>}
+              </Stack.Screen>
+              <Stack.Screen name="Create" >
+                      {props=> <Create {...props} user={user}/>}
+              </Stack.Screen>
+            
               <Stack.Screen name="Update" component={Update}/>
 
           </>
@@ -73,6 +79,8 @@ export default function App() {
 
     
       </Stack.Navigator>
+
+           <FlashMessage position="top" /> 
     </NavigationContainer>
   );
 }

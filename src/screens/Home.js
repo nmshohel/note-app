@@ -36,18 +36,15 @@ const Onboarding=({setOnboarded})=>{
     const makeOnBoardingTrue= async ()=>{
         try{
                 await AsyncStorage.setItem('onboarding', 'true');
+                
         }
         catch (e)
         {
             console.log(e);
         }
+        setOnboarded(true);
     }
 
-
-
-    useEffect(()=>{
-        makeOnBoardingTrue();
-    },[])
 
     const renderItem=({item})=>{
         const {key,title, subtitle, text, image}=item;
@@ -66,10 +63,7 @@ const Onboarding=({setOnboarded})=>{
             </View>
         )
     }
-    const onDone=()=>{
-        setOnboarded(true);
 
-    }
     const renderDoneButton=()=>{
         return(
             <View style={{width:50, height:50, borderRadius:25, backgroundColor:'green', justifyContent:'center', alignItems:'center'}}>
@@ -82,7 +76,7 @@ const Onboarding=({setOnboarded})=>{
         <AppIntroSlider
         renderItem={renderItem}
         data={slides}
-        onDone={onDone}
+        onDone={makeOnBoardingTrue}
         keyExtractor={item=>item.key}
         activeDotStyle={{backgroundColor:'green'}}
         renderDoneButton={renderDoneButton}
@@ -91,15 +85,16 @@ const Onboarding=({setOnboarded})=>{
     )
 }
 
-export default function Home() {
+export default function Home({navigation, route}) {
     const [checking, setChecking]=useState(true);
     const [onboarded, setOnboarded]=useState(false);
+    const [notes, setNotes]=useState([]);
 
 
 
     const getOnboardingValue=async ()=>{
 
-        await AsyncStorage.removeItem('onboarding')
+        // await AsyncStorage.removeItem('onboarding')
         try{
             const value= await AsyncStorage.setItem('onboarding')
             if(value !== null)
@@ -142,15 +137,30 @@ export default function Home() {
 
 
     return (
-        <SafeAreaView style={{marginTop:40}}>
-        <View>
-            <Text>Home Screens</Text>
-            <Pressable onPress={()=>firebase.auth().signOut()}>
-            <Text>Logout</Text>
+        <SafeAreaView style={{flex:1, marginTop:40}}>
+        <View style={{flexDirection:'row', justifyContent:'space-between', marginHorizontal:20}}>
+                <Text style={{fontSize:24, fontWeight:'bold', color:'#18B18D'}}>
+                    My Notes
+                </Text>
+                <Pressable onPress={()=>navigation.navigate('Create')}>
+                   <AntDesign name="pluscircle" size={24} color="green" />
+                </Pressable>
 
-
-            </Pressable>
         </View>
+        {
+            notes.length===0 ?(
+                <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+                        <Image source={require('../../assets/empty.png')}/>
+                        <Text style={{fontSize:18, marginTop:20, color:'#18B18D'}}>
+                            You don't have any notes yet.
+                        </Text>
+                </View>
+            )
+            :
+            (
+                <View></View>
+            )
+        }
         </SafeAreaView>
     )
 }
