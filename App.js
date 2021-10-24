@@ -57,7 +57,7 @@ export default function App() {
       {
         user ?(
           <>
-              <Stack.Screen name="Home" component={Home} />
+              <Stack.Screen name="Home" component={Home} options={{headerShown:false}}  />
               <Stack.Screen name="Create" component={Create}/>
               <Stack.Screen name="Update" component={Update}/>
 
