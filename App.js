@@ -8,7 +8,7 @@ import Create from './src/screens/create';
 import Signin from './src/screens/signin';
 import SignUp from './src/screens/signup';
 import { initializeApp } from "firebase/app";
-import {getAuth, onAuthStateChanged } from "firebase/auth";
+import {getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { getFirestore } from 'firebase/firestore';
 import FlashMessage from "react-native-flash-message";
 import { useEffect, useState } from 'react';
@@ -39,6 +39,10 @@ const Stack= createNativeStackNavigator();
 export default function App() {
   const [loding, setLoding]=useState(true);
   const [user, setUser]=useState(null);
+// sign out or log out
+  // useEffect(()=>{
+  //   signOut(auth);
+  // })
   
     useEffect(()=>{
       const authSubcription=onAuthStateChanged(auth, (user)=>{
