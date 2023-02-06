@@ -39,7 +39,8 @@ const Stack= createNativeStackNavigator();
 export default function App() {
   const [loding, setLoding]=useState(true);
   const [user, setUser]=useState(null);
-// sign out or log out
+
+// sign out or log out---------------------------------------
   // useEffect(()=>{
   //   signOut(auth);
   // })
